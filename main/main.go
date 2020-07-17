@@ -10,6 +10,10 @@ import (
 	"strconv"
 )
 
+func calculateFuel(mass int) int {
+	return mass/3 - 2
+}
+
 func main() {
 	inputFile, err := os.Open("input.txt")
 	if err != nil {
@@ -31,11 +35,11 @@ func main() {
 			log.Fatalf("Unable to convert mass value [%s] to integer. %v.", text, err.Error())
 		}
 
-		fuel := mass/3 - 2
+		fuel := calculateFuel(mass)
 		totalFuel += fuel
 
 		for fuel > 0 {
-			fuel = fuel/3 - 2
+			fuel = calculateFuel(fuel)
 
 			if fuel > 0 {
 				totalFuel += fuel
